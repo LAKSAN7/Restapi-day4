@@ -1,21 +1,33 @@
 package com.example.demo.service;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+
+
 import com.example.demo.model.StudentEntity;
 import com.example.demo.repository.StudentRepo;
 
 @Service
 public class StudentService {
-    @Autowired
-	StudentRepo sr;
-	@GetMapping("addstudent")
-	public StudentEntity saveinfo(StudentEntity ss) {
-		return sr.save(ss);
+	@Autowired
+	StudentRepo er;
+	public StudentEntity saveinfo(StudentEntity ee) {
+		return er.save(ee);//POST	
 	}
-	@GetMapping("showstudent")
-	public List<StudentEntity> showinfo(){
-		return sr.findAll();
+	public List<StudentEntity>showinfo(){
+		return er.findAll();//GET
 	}
+	public StudentEntity changeinfo(StudentEntity ee) {
+		return er.saveAndFlush(ee);//put
+	}
+	public void deleteinfo(StudentEntity ee) {
+		er.delete(ee);
+
 }
+}
+
+
+
+
+
+
